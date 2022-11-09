@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+    <canvas id="tempChart" style="width:100%;max-width:600px"></canvas>
+    <canvas id="covidChart" style="width:100%;max-width:600px"></canvas>
+    <canvas id="barChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        var xdate = ["11월1일","11월2일","11월3일","11월4일","11월5일","11월6일","11월7일","11월8일","11월9일"];
+        new Chart("tempChart",{
+            type: 'line',
+            data: {
+                labels: xdate,
+                datasets: [{
+                    data: [23,23.1,22.8,16.8,17.4,18.6,19.8,22.4,20.7],
+                    borderColor:"red",
+                    fill: false
+                },{
+                    data: [12.5,12.3,11.9,7.5,5.5,7.5,9.3,10.6,10.4],
+                    borderColor:"blue",
+                    fill: false
+                }]
+            },
+            options:{
+                legend : {display: false},
+                title : {
+                    display : true,
+                    text: "11월 최고 최저 기온"
+                }
+            }
+        });
+        var xValues = ["서울", "경남", "부산", "경기", "기타"];
+        var yValues = [19.5, 6, 5.9, 27, 41.6];
+        var barColors = [
+         "#b91d47",
+         "#00aba9",
+         "#2b5797",
+         "#e8c3b9",
+         "#1e7145"
+        ];
+        new Chart("covidChart", {
+            type: "pie",
+            data: {
+               labels: xValues,
+                datasets: [{
+                 backgroundColor: barColors,
+                  data: yValues
+             }]
+             },
+             options: {
+              title: {
+            display: true,
+           text: "확진환자 지역별 비율 (11.9 00시 기준)"
+        }}
+        });
+        var nationValues = ["미국", "대한민국", "이탈리아", "스페인", "이란"];
+        var numValues = [1098524,29479,179436,115239,144604];
+        new Chart("barChart", {
+            type: "bar",
+            data: {
+                labels : nationValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: numValues
+                }]
+            },
+            options: {
+                legend : {display: false},
+                title: {
+                    display: true,
+                    text: "전세계 사망자 수 (2022-11-09 기준)"
+                }
+            }
+        });
+        </script>
+        
+</body>
+</html>
